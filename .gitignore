@@ -1,0 +1,22 @@
+# Build output
+build/
+out/
+
+# Gradle
+.gradle/
+gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Fabric Loom cache
+.cache/
+remappedSources/
+
+# OS
+Thumbs.db
+.DS_Store

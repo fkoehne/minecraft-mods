@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "funnyrecipes",
+  "version": "${version}",
+  "name": "Funny Recipes",
+  "description": "Craft diamonds from dirt. Make a sword out of bread. Live your best life.",
+  "authors": ["Player"],
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.example.funnyrecipes.FunnyRecipesMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "minecraft": ">=1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
