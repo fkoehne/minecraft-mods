@@ -1,6 +1,10 @@
 # Build output
-build/
+build/*
 out/
+!build/devlibs/
+build/devlibs/*
+!build/devlibs/*.jar
+build/devlibs/*-sources.jar
 
 # Gradle
 .gradle/
