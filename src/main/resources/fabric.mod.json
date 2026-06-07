@@ -9,10 +9,13 @@
   "entrypoints": {
     "main": ["com.example.funnyrecipes.FunnyRecipesMod"]
   },
+  "mixins": [
+    "funnyrecipes.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=0.14.0",
-    "minecraft": ">=1.21.1",
-    "java": ">=21",
+    "minecraft": ">=26.1.2",
+    "java": ">=25",
     "fabric-api": "*"
   }
 }

@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.9-SNAPSHOT'
+    id 'fabric-loom' version '1.10-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -15,9 +15,11 @@ repositories {
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    // Fabric API not needed at compile time — we use no Fabric API classes.
+    // Runtime requirement is declared in fabric.mod.json ("fabric-api": "*").
+    // modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
 processResources {
@@ -29,11 +31,24 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
+    // Target Java 21 bytecode so Loom's ASM remapper can process the class files.
+    // The JDK running the build is Java 25, which supports --release 21.
     it.options.release = 21
 }
 
 java {
     withSourcesJar()
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+// Minecraft 26.1.2 ships with native Mojang-mapped class names — no obfuscation,
+// no intermediary layer. Loom's remapJar would convert Mojang → intermediary, which
+// is exactly wrong. Skip it and ship the dev jar (already Mojang-named) directly.
+jar {
+    archiveClassifier = ''
+}
+remapJar {
+    enabled = false
 }
