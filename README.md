@@ -17,6 +17,15 @@ Every crafting action has a **50% chance** to replace the output with a complete
 
 Implemented via a Mixin on `ResultSlot.onTake`.
 
+
+## Installation
+
+1) Install the fabric lauchner: https://fabricmc.net/use/installer/
+
+2) Download `funnyrecipes-1.0.0.jar` into `%APPDATA%\.minecraft\mods\`.
+
+3) Downdload fabric-api-0.150.0+26.1.2  and place it in the same folder.
+
 ## Build
 
 ```bat
